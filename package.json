@@ -12,6 +12,8 @@
   "dependencies": {
     "@hapi/hapi": "^21.4.0",
     "@hapi/inert": "^7.1.0",
+    "dotenv": "^16.5.0",
+    "midtrans-client": "^1.4.2",
     "mysql2": "^3.14.1",
     "nodemon": "^3.1.10"
   }

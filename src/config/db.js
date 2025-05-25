@@ -1,22 +1,22 @@
+require('dotenv').config();
 const mysql = require('mysql2/promise');
 
-
 const db = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'lalasocks',
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
 });
 
 db.getConnection()
-  .then(conn => {
+  .then((conn) => {
     console.log('Database udah connect');
     conn.release();
   })
-  .catch(err => {
+  .catch((err) => {
     console.error('Database gagal connect:', err.message);
   });
 

@@ -1,6 +1,7 @@
+require('dotenv').config();
 const Hapi = require('@hapi/hapi');
 const routes = require('./routes/routes.js');
-const db = require('./config/db.js')
+const db = require('./config/db.js');
 const Inert = require('@hapi/inert');
 
 const init = async () => {
@@ -9,7 +10,7 @@ const init = async () => {
     host: process.env.NODE_ENV !== 'deployment' ? 'localhost' : '0.0.0.0',
     routes: {
       files: {
-        relativeTo: require('path').resolve(__dirname, 'public')
+        relativeTo: require('path').resolve(__dirname, 'public'),
       },
       cors: {
         origin: ['*'],
@@ -25,12 +26,12 @@ const init = async () => {
     handler: {
       directory: {
         path: 'images',
-        listing: true
-      }
-    }
+        listing: true,
+      },
+    },
   });
 
-  server.route(routes)
+  server.route(routes);
 
   await server.start();
   console.log(`Server berjalan pada ${server.info.uri}`);
